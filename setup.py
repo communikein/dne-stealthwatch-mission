@@ -1,13 +1,8 @@
 #!/usr/bin/env python
 
 import json
-import sys
-import random
-import datetime
-import time
 
 import requests
-import webexteamssdk
 from crayons import blue, green, red
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
 
@@ -125,6 +120,7 @@ if __name__ == "__main__":
 			print(f'Working on Tenant ID is: {SMC_TENANT_ID}')
 			
 			# Updating the Security Event 16 (Total Traffic High) to meet our needs for the DNE
+			print(f'\n==> Updating the Security Event 16 (Total Traffic High) to meet our needs for the DNE')
 			new_security_event_details = [{
 				"id": 16,
 				"policyId": 1,
