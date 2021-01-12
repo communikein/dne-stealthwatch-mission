@@ -65,14 +65,17 @@ def get_security_events(time_window=60):
 	end_timestamp = end_datetime.strftime('%Y-%m-%dT%H:%M:%SZ')
 	start_timestamp = start_datetime.strftime('%Y-%m-%dT%H:%M:%SZ')
 
+	print(f'Start time: {start_timestamp}')
+	print(f'End time: {end_timestamp}')
+
 	# Set the filter with the request data. Remember: "timeRange" is the only mandatory field.
-	# TODO: Look for all the hosts generating an anomaluos high amount of traffic (security event ID: 30)
+	# TODO: Look for all the hosts generating an anomaluos high amount of traffic (security event ID: 16)
 	request_data = {
 		"timeRange": {
 			"from": start_timestamp,
 			"to": end_timestamp
 		},
-		"securityEventTypeIds": [30, 31],
+		"securityEventTypeIds": [16]
 	}
 
 	# Perform the query to initiate the search
@@ -86,6 +89,7 @@ def get_security_events(time_window=60):
 		return search_id
 
 	print(red(f"An error has ocurred, while creating search query, with the following code {response.status_code}"))
+	print(red(f"{response.json()}"))
 	return None
 
 # Terminate API session and terminate token validity
@@ -106,8 +110,8 @@ def create_new_tag(tag_data):
 	# If successfully able to add the tag (host group)
 	if (response.status_code == 200):
 		print(green(f"New tag (host group) successfully added"))
-		print(response)
-		return response['data'][0]['id']
+		print(json.dumps(response.json(), indent=4))
+		return str(response.json()['data'][0]['id'])
 
 	# If unable to add the new tag (host group)
 	print(red(f"An error has ocurred, while adding tags (host groups), with the following code {response.status_code}"))
@@ -182,7 +186,8 @@ if __name__ == "__main__":
 			print(f'Working on Tenant ID is: {SMC_TENANT_ID}')
 			
 			# Get all hosts with abnormally high traffic
-			query_search_id = get_security_events(time_window=180)
+			time_window = 60
+			query_search_id = get_security_events(time_window)
 
 			# If successfully created a search query 
 			if query_search_id:
@@ -207,19 +212,18 @@ if __name__ == "__main__":
 				url = 'https://' + SMC_HOST + '/sw-reporting/v1/tenants/' + SMC_TENANT_ID + '/security-events/results/' + query_search_id
 				response = api_session.request("GET", url, verify=False)
 				results = json.loads(response.content)["data"]["results"]
-				print(results)
-
-				# Loop through the results and add all the source and target IP addresses to the list
+				
+				# Loop through the results and add the first 10 source IP addresses to the list
 				total_security_events = len(results)
+				print(f'Total found events: {total_security_events}')
 				ip_addresses = set()
 				for result in results:
 					source_address = result['source']['ipAddress']
-					target_address = result['target']['ipAddress']
-
 					ip_addresses.add(source_address)
-					ip_addresses.add(target_address)
 
-				print(f"Found {len(ip_addresses)} IP addresses.")
+					if len(ip_addresses) == 10:
+						break
+				print(f"Collected the following first 10 IP addresses: {ip_addresses}")
 
 				# TODO: Create a new TAG with the newly found IP addresses
 				tag_name = f"[{webex_username}] - High Traffic Hosts"
@@ -236,7 +240,7 @@ if __name__ == "__main__":
 				if id_tag:
 
 					print(f"\n==> Sending message to Webex Space bragging for a completed mission! :D")
-					message = f"**StealthWatch Enterprise Mission completed!!!**\nI created the new TAG {tag_name}, containing {len(ip_addresses)} IP addresses of hosts generating or receiving an unusually high amount of traffic."
+					message = f"**StealthWatch Enterprise Mission completed!!! :D**\nI created the new TAG _{tag_name}_, containing {len(ip_addresses)} IP addresses of hosts generating an unusually high amount of traffic."
 
 					# Finally, post a message to the Webex Teams Room to brag!!!
 					send_webex_message(message)
