@@ -65,9 +65,6 @@ def get_security_events(time_window=60):
 	end_timestamp = end_datetime.strftime('%Y-%m-%dT%H:%M:%SZ')
 	start_timestamp = start_datetime.strftime('%Y-%m-%dT%H:%M:%SZ')
 
-	print(f'Start time: {start_timestamp}')
-	print(f'End time: {end_timestamp}')
-
 	# Set the filter with the request data. Remember: "timeRange" is the only mandatory field.
 	# TODO: Look for all the hosts generating an anomaluos high amount of traffic (security event ID: 16)
 	request_data = {
