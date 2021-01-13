@@ -25,7 +25,7 @@ SMC_HOST = env_lab.SMC.get("host")
 def login(sw_session, data):
 	
 	print("\n==> Logging in to the SMC")
-	url = "https://" + SMC_HOST + "/token/v2/authenticate"
+	url = f'https://{SMC_HOST}/token/v2/authenticate'
 	response = sw_session.request("POST", url, verify=False, data=data)
 
 	# If the login was successful
@@ -40,7 +40,7 @@ def login(sw_session, data):
 def get_tenants(sw_session):
 	
 	print("\n==> Finding all Tenants available")
-	url = 'https://' + SMC_HOST + '/sw-reporting/v1/tenants/'
+	url = f'https://{SMC_HOST}/sw-reporting/v1/tenants/'
 	response = api_session.request("GET", url, verify=False)
 
 	if response.status_code == 200:
@@ -84,7 +84,7 @@ def update_security_event(security_event_data):
 # Terminate API session and terminate token validity
 def terminate_session(sw_session):
 	
-	uri = 'https://' + SMC_HOST + '/token'
+	uri = f'https://{SMC_HOST}/token'
 	response = api_session.delete(uri, timeout=30, verify=False)
 
 
@@ -113,14 +113,14 @@ if __name__ == "__main__":
 			# Store the tenants (domains) IDs as a variable to use later
 			tenant_list = json.loads(tenants_content)["data"]
 			# TODO: Print all the tenants IDs returned and find the one you need.
-			print(green(f'Found all the following tenants: {tenant_list}'))
-			SMC_TENANT_ID = "132"
+			print(green(f'Found the following tenants: {tenant_list}'))
+			SMC_TENANT_ID = tenant_list[0]['id']
 
 			# Print the SMC Tenant ID selected
 			print(f'Working on Tenant ID is: {SMC_TENANT_ID}')
 			
-			# Updating the Security Event 16 (Total Traffic High) to meet our needs for the DNE
-			print(f'\n==> Updating the Security Event 16 (Total Traffic High) to meet our needs for the DNE')
+			# Updating the Security Event 16 (Total High Traffic) to meet our needs for the DNE
+			print(f'\n==> Updating the Security Event 16 (Total High Traffic) to meet our needs for the DNE')
 			new_security_event_details = [{
 				"id": 16,
 				"policyId": 1,
