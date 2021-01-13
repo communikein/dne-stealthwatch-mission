@@ -71,8 +71,11 @@ def get_security_events(time_window=60):
 	start_timestamp = start_datetime.strftime('%Y-%m-%dT%H:%M:%SZ')
 
 	# Set the filter with the request data.
-	# TODO: Look for all the hosts generating an anomaluos high amount of traffic (security event ID: 16)
-	# HINT: Don't know how to filter the query request? Have a look at the APIs on DevNet (https://developer.cisco.com/docs/stealthwatch/enterprise/#!reporting-api-version-1)
+	# TODO: Look for all the hosts generating High Total Traffic (security event ID: ?)
+	# HINT: Don't know how to filter the query request? Have a look at the APIs on DevNet 
+	# (https://developer.cisco.com/docs/stealthwatch/enterprise/#!reporting-api-version-1)
+	# Don't know which Security Event ID you need to use? Hve a look at this PDF
+	# (https://www.cisco.com/c/dam/en/us/td/docs/security/stealthwatch/management_console/securit_events_alarm_categories/SW_7_2_1_Security_Events_and_Alarm_Categories_DV_1_0.pdf)
 	env_lab.print_missing_mission_warn(env_lab.get_line())
 	request_data = MISSION
 

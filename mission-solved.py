@@ -66,7 +66,6 @@ def get_security_events(time_window=60):
 	start_timestamp = start_datetime.strftime('%Y-%m-%dT%H:%M:%SZ')
 
 	# Set the filter with the request data. Remember: "timeRange" is the only mandatory field.
-	# TODO: Look for all the hosts generating an anomaluos high amount of traffic (security event ID: 16)
 	request_data = {
 		"timeRange": {
 			"from": start_timestamp,
@@ -175,7 +174,6 @@ if __name__ == "__main__":
 
 			# Store the tenants (domains) IDs as a variable to use later
 			tenant_list = json.loads(tenants_content)["data"]
-			# TODO: Print all the tenants IDs returned and find the one you need.
 			print(green(f'Found all the following tenants: {tenant_list}'))
 			SMC_TENANT_ID = tenant_list[0]['id']
 
@@ -199,7 +197,6 @@ if __name__ == "__main__":
 				percent_complete = 0.0
 				while percent_complete != 100.0:
 					response = api_session.request("GET", url, verify=False)
-					# TODO: get the JSON search data to check whether the search has completed
 					percent_complete = json.loads(response.content)["data"]["percentComplete"]
 					print(f"Search progress: {percent_complete}%")
 					time.sleep(1)
@@ -222,7 +219,6 @@ if __name__ == "__main__":
 						break
 				print(f"Collected the following first 10 IP addresses: {ip_addresses}")
 
-				# TODO: Create a new TAG with the newly found IP addresses
 				tag_name = f"[{webex_username}] - High Traffic Hosts"
 				request_data = [
 					{
