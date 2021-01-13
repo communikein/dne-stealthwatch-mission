@@ -59,20 +59,15 @@ Have you successfully completed the mission? Let's find out.
 Open a terminal and navigate to the root of the dne-security-code repository.
 Navigate to the mission directory, intro-secure-network/mission.
 	
-	```
 	cd intro-secure-network/mission
-	```
 
 Run the Python file that you edited for the mission.
 	
-	```
 	python secure_network_mission.py
-	```
 
 # What to expect
 If you successfully completed the mission, the script should complete without errors. The output will be similar to the following:
 
-	```
 	==> Logging in to the SMC
 	Login SUCCESSFUL!
 
@@ -114,7 +109,6 @@ If you successfully completed the mission, the script should complete without er
 
 	==> Removing TAG 50081
 	Tag 50081 has been successfully removed
-	```
 
 # Summary
 Congratulations! You have used the Cisco Secure Network REST APIs to identify and retrieve some Security Events and create a TAG (host group) containing the information retrieved.
