@@ -30,7 +30,7 @@ SMC_HOST = env_lab.SMC.get("host")
 def login(sw_session, data):
 	
 	print("\n==> Logging in to the SMC")
-	url = "https://" + SMC_HOST + "/token/v2/authenticate"
+	url = f'https://{SMC_HOST}/token/v2/authenticate'
 	env_lab.print_missing_mission_warn(env_lab.get_line())
 	response = sw_session.request(MISSION, url, verify=False, data=data)
 
@@ -48,7 +48,7 @@ def login(sw_session, data):
 def get_tenants(sw_session):
 	
 	print("\n==> Finding all Tenants available")
-	url = 'https://' + SMC_HOST + '/sw-reporting/v1/tenants/'
+	url = f'https://{SMC_HOST}/sw-reporting/v1/tenants/'
 	response = api_session.request("GET", url, verify=False)
 
 	if response.status_code == 200:
@@ -97,7 +97,7 @@ def get_security_events(time_window=60):
 # Terminate API session and terminate token validity
 def terminate_session(sw_session):
 	
-	uri = 'https://' + SMC_HOST + '/token'
+	uri = f'https://{SMC_HOST}/token'
 	response = api_session.delete(uri, timeout=30, verify=False)
 
 # Add the new tag (host group) in the SMC
@@ -105,7 +105,7 @@ def create_new_tag(tag_data):
 
 	print(f"\n==> Creating new TAG named: {tag_data[0]['name']}")
 
-	url = 'https://' + SMC_HOST + '/smc-configuration/rest/v1/tenants/' + SMC_TENANT_ID + '/tags'
+	url = f'https://{SMC_HOST}/smc-configuration/rest/v1/tenants/{SMC_TENANT_ID}/tags'
 	request_headers = {'Content-type': 'application/json', 'Accept': 'application/json'}
 	# TODO: Pass the data to the POST request, remember thet 'requests' library requires the JSON object to be converted in String.
 	env_lab.print_missing_mission_warn(env_lab.get_line())
@@ -189,7 +189,7 @@ if __name__ == "__main__":
 			tenant_list = json.loads(tenants_content)["data"]
 			# TODO: Print all the tenants IDs returned and find the one you need.
 			print(green(f'Found all the following tenants: {tenant_list}'))
-			SMC_TENANT_ID = "132"
+			SMC_TENANT_ID = tenant_list[0]['id']
 
 			# Print the SMC Tenant ID selected
 			print(f'Working on Tenant ID is: {SMC_TENANT_ID}')
@@ -207,7 +207,7 @@ if __name__ == "__main__":
 				# Check status of query
 				# TODO: Complete the URL to get the query status
 				env_lab.print_missing_mission_warn(env_lab.get_line())
-				url = 'https://' + SMC_HOST + '/sw-reporting/v1/tenants/' + SMC_TENANT_ID + MISSION + query_search_id
+				url = f'https://{SMC_HOST}/sw-reporting/v1/tenants/{SMC_TENANT_ID}' + MISSION + query_search_id
 
 				# While search status is not complete, check the status every second
 				percent_complete = 0.0
@@ -222,7 +222,7 @@ if __name__ == "__main__":
 				# Get the search results
 				# TODO: Complete the URL to get the query results
 				env_lab.print_missing_mission_warn(env_lab.get_line())
-				url = 'https://' + SMC_HOST + '/sw-reporting/v1/tenants/' + SMC_TENANT_ID + MISSION + query_search_id
+				url = f'https://{SMC_HOST}/sw-reporting/v1/tenants/{SMC_TENANT_ID}' + MISSION + query_search_id
 				response = api_session.request("GET", url, verify=False)
 				results = json.loads(response.content)["data"]["results"]
 				
