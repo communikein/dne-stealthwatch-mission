@@ -1,5 +1,3 @@
-# Cisco Secure Network Analytics Mission
-
 # What is the use case?
 The use case is quite simple, based on the config files, this script automatically logs in to the targeted Secure Network Analytics SMC and looks for all the IP addresses that in the last hour (parameter that can be modified in the configs), either as source or as target, generated an abnourmally high total traffic. 
 As continuing inbound or outbound traffic (or a mix of the two), is generally a sign of anomalous behavior, the script creates a TAG (host group) to which it adds the source IP addresses, of the inside hosts, that were part of such events.
