@@ -14,11 +14,16 @@ Possible future improvements include:
 # Try it yourself
 In case you don't have a Secure Network Analytics solution to use, you can take advantage of the DevNet website and reserve a sandbox by following these steps:
 1. [Follow this link](https://developer.cisco.com/docs/sandbox/#!security/overview)
-2. Click on "Try It Out" in the Cisco Stealthwatch section (that's the former name for Secure Network Analytics). This will open a second window in yur browser.
-<img src="https://github.com/communikein/dne-stealthwatch-mission/blob/main/use-cases/images/step-0.png" width=70% height=70%>
-3. In the top of the window, look for a blue bar. At its rightmost end you will find a "Reserve" button. Click on it.
-<img src="https://github.com/communikein/dne-stealthwatch-mission/blob/main/use-cases/images/step-1.png" width=70% height=70%>
+2. Click on "Try It Out" in the Cisco Stealthwatch section (that's the former name for Secure Network Analytics). This will open a second window in yur browser.<br /> <img src="https://github.com/communikein/dne-stealthwatch-mission/blob/main/use-cases/images/step-0.png" width=70% height=70%>
+3. In the top of the window, look for a blue bar. At its rightmost end you will find a "Reserve" button. Click on it. <br /><img src="https://github.com/communikein/dne-stealthwatch-mission/blob/main/use-cases/images/step-1.png" width=70% height=70%>
 4. Enter the required details to reserver your instance (there is a maximum of 4 hours of reservation available).
-5. Click on "Reserve"
-<img src="https://github.com/communikein/dne-stealthwatch-mission/blob/main/use-cases/images/step-2.png" width=70% height=70%>
+5. Click on "Reserve". <br /><img src="https://github.com/communikein/dne-stealthwatch-mission/blob/main/use-cases/images/step-2.png" width=70% height=70%>
 6. After 10-15 minutes an email will be sent to you with the details on how to access the sandbox.
+
+# Setup the Secure Network Analytics SMC
+If you are using a DevNet sandbox instance, you will need to run ```python3 setup.py``` since the traffic that the sandbox generates is not enough to trigger the security events. This script will edit the policy for the chosen security event to lower the threashold that would generate the alarm.
+
+To run the script simply type:
+```python
+python3 setup.py <security_event_id>
+```
