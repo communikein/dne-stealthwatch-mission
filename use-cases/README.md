@@ -15,10 +15,10 @@ Possible future improvements include:
 In case you don't have a Secure Network Analytics solution to use, you can take advantage of the DevNet website and reserve a sandbox by following these steps:
 1. [Follow this link](https://developer.cisco.com/docs/sandbox/#!security/overview)
 2. Click on "Try It Out" in the Cisco Stealthwatch section (that's the former name for Secure Network Analytics). This will open a second window in yur browser.
-<img src="https://github.com/communikein/dne-stealthwatch-mission/blob/main/use-cases/images/step-0.png" width=50% height=50%>
+<img src="https://github.com/communikein/dne-stealthwatch-mission/blob/main/use-cases/images/step-0.png" width=70% height=70%>
 3. In the top of the window, look for a blue bar. At its rightmost end you will find a "Reserve" button. Click on it.
-<img src="https://github.com/communikein/dne-stealthwatch-mission/blob/main/use-casesimages/step-1.png" width=50% height=50%>
+<img src="https://github.com/communikein/dne-stealthwatch-mission/blob/main/use-cases/images/step-1.png" width=70% height=70%>
 4. Enter the required details to reserver your instance (there is a maximum of 4 hours of reservation available).
 5. Click on "Reserve"
-<img src="https://github.com/communikein/dne-stealthwatch-mission/blob/main/use-casesimages/step-2.png" width=50% height=50%>
+<img src="https://github.com/communikein/dne-stealthwatch-mission/blob/main/use-cases/images/step-2.png" width=70% height=70%>
 6. After 10-15 minutes an email will be sent to you with the details on how to access the sandbox.
