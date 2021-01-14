@@ -10,3 +10,15 @@ Possible future improvements include:
 - Integration with Secure Endpoint, to provide context as per which process is responsible for this abnormal amount of traffic.
 - Integration with Webex, to signal the discovery of a new host (or IP) that triggered the alarm, and providing in the message the additianl context and info gathered from Umbrella and Secure Workload.
 - Integration with Secure Workload, to automatically block the connection with the IP and blacklist it if the evidence gathered is enough to have a certain degree of certainty.
+
+# Try it yourself
+In case you don't have a Secure Network Analytics solution to use, you can take advantage of the DevNet website and reserve a sandbox by following these steps:
+1. [Follow this link](https://developer.cisco.com/docs/sandbox/#!security/overview)
+2. Click on "Try It Out" in the Cisco Stealthwatch section (that's the former name for Secure Network Analytics). This will open a second window in yur browser.
+<img src="https://github.com/communikein/dne-stealthwatch-mission/blob/master/use-casesimages/step-0.jpg" width=50% height=50%>
+3. In the top of the window, look for a blue bar. At its rightmost end you will find a "Reserve" button. Click on it.
+<img src="https://github.com/communikein/dne-stealthwatch-mission/blob/master/use-casesimages/step-1.jpg" width=50% height=50%>
+4. Enter the required details to reserver your instance (there is a maximum of 4 hours of reservation available).
+5. Click on "Reserve"
+<img src="https://github.com/communikein/dne-stealthwatch-mission/blob/master/use-casesimages/step-2.jpg" width=50% height=50%>
+6. After 10-15 minutes an email will be sent to you with the details on how to access the sandbox.
