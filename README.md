@@ -3,6 +3,8 @@
 # Mission: Retrieve security events and create host group​
 In this mission, you will use Cisco Secure Network Analytics to identify and retrieve some Security Events and create a TAG (host group) containing the information retrieved.
 
+Prepare for the mission following the [Stealthwatch Enterprise learning lab](https://developer.cisco.com/learning/tracks/stealthwatch/stealthwatch-enterprise-module/Intro-SWE-Apis/complete)
+
 # Objectives
 The objective of this mission is to teach the following Cisco Secure Network Analytics:
 
@@ -21,6 +23,23 @@ Lab infrastructure to target API calls and code. These labs and code examples wi
 You should also have an understanding of these foundational topics:
 - The content in the "An introduction to the Cisco Secure Network Analytics APIs" Learning Lab.
 - Ability to read and understand Python code samples and scripts. You can explore the Programming Fundamentals labs available on DevNet.
+
+## Reserve the sandbox
+In case you don't have a Secure Network Analytics solution to use, you can take advantage of the DevNet website and reserve a sandbox by following these steps:
+1. [Follow this link](https://developer.cisco.com/docs/sandbox/#!security/overview)
+2. Click on "Try It Out" in the Cisco Stealthwatch section (that's the former name for Secure Network Analytics). This will open a second window in yur browser.<br /> <img src="https://github.com/communikein/dne-stealthwatch-mission/blob/main/use-cases/images/step-0.png" width=70% height=70%>
+3. In the top of the window, look for a blue bar. At its rightmost end you will find a "Reserve" button. Click on it. <br /><img src="https://github.com/communikein/dne-stealthwatch-mission/blob/main/use-cases/images/step-1.png" width=70% height=70%>
+4. Enter the required details to reserver your instance (there is a maximum of 4 hours of reservation available).
+5. Click on "Reserve". <br /><img src="https://github.com/communikein/dne-stealthwatch-mission/blob/main/use-cases/images/step-2.png" width=70% height=70%>
+6. After 10-15 minutes an email will be sent to you with the details on how to access the sandbox.
+
+## Setup the Secure Network Analytics SMC
+If you are using a DevNet sandbox instance, you will need to run ```python3 setup.py``` since the traffic that the sandbox generates is not enough to trigger the security events. This script will edit the policy for the chosen security event to lower the threashold that would generate the alarm.
+
+To run the script simply type:
+```python
+python3 setup.py <security_event_id>
+```
 
 # Your mission, should you choose to accept it!
 Your instructor will provide a code sample. Your mission is to complete the code sample by filling in missing data. The majority of the provided code sample is complete and accurate. You simply need to fix or update sections indicated in the code by MISSION marks. Pay attention to the TODO: and HINT: in the code, they will provide you with additional information and hints to proceed if you get stuck.
