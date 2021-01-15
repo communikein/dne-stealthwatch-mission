@@ -1,0 +1,14 @@
+certifi==2020.12.5
+chardet==4.0.0
+colorama==0.4.4
+crayons==0.4.0
+DateTime==4.3
+future==0.18.2
+idna==2.10
+PyJWT==2.0.0
+pytz==2020.5
+requests==2.25.1
+requests-toolbelt==0.9.1
+urllib3==1.26.2
+webexteamssdk==1.6
+zope.interface==5.2.0

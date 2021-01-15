@@ -70,8 +70,8 @@ elif ENVIRONMENT_IN_USE == "custom":
 
 
 def print_missing_mission_warn(lineerror) :
-	print(blue(f"\nPlease replace this fucntion (print_missing_mission_warn(...)) with correct required mission statements!\n"))
-	print(green(f"At hosted DNE Event; Please ask for help from procter or your neighbour attendee; if you are not making progress...\n"))
+	print(red(f"\nPlease replace this function (print_missing_mission_warn(...)) with the correct required mission statements!\n"))
+	print(red(f"At hosted DNE Event; Please ask for help from the proctor or your neighbour attendee; if you are not making progress...\n"))
 	print(red(f"Check and complete the #TODO at Line number --->  {lineerror}"))
 	return exit()
 
