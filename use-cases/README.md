@@ -1,4 +1,6 @@
-# What is the use case?
+# Detect, notify and create a Host Group containing all the IP addresses generating High Traffic
+
+# Tell me more
 The use case is quite simple, based on the config files, this script automatically logs in to the targeted Secure Network Analytics SMC and looks for all the IP addresses that in the last hour (parameter that can be modified in the configs), either as source or as target, generated an abnourmally high total traffic. 
 As continuing inbound or outbound traffic (or a mix of the two), is generally a sign of anomalous behavior, the script creates a TAG (host group) to which it adds the source IP addresses, of the inside hosts, that were part of such events.
 Once the TAG is created, further analysis can be performed.
@@ -24,6 +26,6 @@ In case you don't have a Secure Network Analytics solution to use, you can take 
 If you are using a DevNet sandbox instance, you will need to run ```python3 setup.py``` since the traffic that the sandbox generates is not enough to trigger the security events. This script will edit the policy for the chosen security event to lower the threashold that would generate the alarm.
 
 To run the script simply type:
-```python
+```
 python3 setup.py <security_event_id>
 ```
